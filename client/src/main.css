@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('//fonts.googleapis.com/css?family=Cookie');
+
+:root {
+    --bg-color: #f5efef;
+    --orange: #f37521;
+    --pink: #ff4f6c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}

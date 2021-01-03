@@ -41,8 +41,8 @@ app.use(cors())
 
 // ROUTE MIDDLEWARES 
 app.use('/api/users', authRoutes)
-app.use('/api/images/', imageRoutes)
-app.use('/api/gallery/', galleryRoutes)
+app.use('/api/images', imageRoutes)
+app.use('/api/gallery', galleryRoutes)
 
 
 // HOSTING CONFIG
