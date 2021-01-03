@@ -15,7 +15,6 @@ const verify = (req, res, next) => {
             if(err) {
                 return res.status(401).send({'message': 'Unauthorized'})
             }
-            console.log(decoded)
             req.userId = decoded.id
 
             // GO TO THE MAIN TASK

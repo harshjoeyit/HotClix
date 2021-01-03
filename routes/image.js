@@ -1,9 +1,10 @@
 const   router = require('express').Router(),
         keys = require('../config/keys'),
-        verify = require('../routes/verifyToken'),
+        verify = require('./verifyToken'),
         AWS = require('aws-sdk'),
         uuid = require('uuid/v4'),
-        { imageUploadValidation } = require('../validations/imageValidations');
+        { imageUploadValidation } = require('../validations/imageValidations'),
+        url = require('url');
 
 
 // IMAGE MANIPULATION PACKAGES 
@@ -97,9 +98,8 @@ const saveUpload = async (uploadData) => {
     const sql = `INSERT INTO images (uploaded_by, gallery, name, extension, file_url, thumbnail_url)
     VALUES('${userId}', '${galleryId}', '${fileName}', 'jpg', '${fileUrl}', '${thumbnailUrl}')`
 
-    const image = await dbquery(sql)
-    console.log(image)
-    return { id: image.insertId }
+    const dbRes = await dbquery(sql)
+    return { id: dbRes.insertId }
 }
 
 
@@ -112,14 +112,14 @@ router.post('/', verify, async (req, res) => {
     // VALIDATE 
 
     if(imageFiles === undefined) {
-        return res.status(400).send({"message": "Upload at least 1 file"})
+        return res.status(400).send({"error": "Upload at least 1 file"})
         // TODO
         // vaildate files mimetype
     }
 
     const {error} = imageUploadValidation(req.body)
     if(error) {
-        return res.status(400).send({"message":  error.details[0].message})
+        return res.status(400).send({"error":  error.details[0].message})
     }
 
     // CHECK IF GALLERY EXISTS
@@ -128,7 +128,7 @@ router.post('/', verify, async (req, res) => {
     const galleryFound = await dbquery(sql)
 
     if(galleryFound.length === 0) {
-        return res.status(400).send({'message': 'invalid gallery'})
+        return res.status(400).send({'error': 'invalid gallery'})
     }
 
     if (!Array.isArray(imageFiles)) {
@@ -151,11 +151,57 @@ router.post('/', verify, async (req, res) => {
         uploadedFileIds.push(id)
     }
 
-    return res.send({
+    return res.status(201).send({
         'message': 'all files uploaded',
         'files': uploadedFileIds
     })
 })
+
+
+// GET AN IMAGE 
+
+router.get('/:imageId', verify, async (req, res) => {
+    const { imageId } = req.params
+
+    let sql = `SELECT * FROM images WHERE id = '${imageId}'`
+    const imageFound = await dbquery(sql)
+
+    if(imageFound.length === 0) {
+        return res.status(400).send({'error': 'Image does not exist'})
+    }
+    return res.status(200).send({
+        'message': 'image found',
+        image: imageFound[0]
+    })
+}) 
+
+
+// LIST ALL IMAGES IN A GALLERY
+
+router.get('/', verify, async (req, res) => {
+    const queryObject = url.parse(req.url,true).query;
+    const { galleryId } = queryObject
+    
+    let sql = `SELECT * FROM images WHERE gallery = '${galleryId}'`
+    const images = await dbquery(sql)
+
+    let response = { images };
+    if(images.length === 0) {
+        response.error = 'No images found'
+    } else {
+        response.message = 'Images found'
+    }
+
+    return res.status(200).send(response)
+})
+
+
+// DELETE IMAGE 
+
+
+
+// UPDATE IMAGE 
+
 
 
 module.exports = router

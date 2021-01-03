@@ -14,7 +14,7 @@ router.post('/register', async (req,res) => {
 
     const {error} = registerValidation(req.body)
     if(error) {
-        return res.status(400).send({"message":  error.details[0].message})
+        return res.status(400).send({"error":  error.details[0].message})
     }
 
     // CREATE NEW USER FUNCTION
@@ -34,8 +34,8 @@ router.post('/register', async (req,res) => {
         let sql = `INSERT INTO users (username, email, password) 
                     VALUES('${username}', '${email}', '${hashedPassword}')`
         
-        const user = await dbquery(sql)
-        return res.send({message: 'user created', id: user.insertId}) 
+        const dbRes = await dbquery(sql)
+        return res.status(201).send({'message': 'user created', id: dbRes.insertId}) 
     }
 
     // CHECK IF USER WITH THIS EMAIL EXISTS 
@@ -44,7 +44,7 @@ router.post('/register', async (req,res) => {
     const userFound = await dbquery(sql)
 
     if(userFound.length !== 0) {
-        return res.status(400).send({'message': 'user already exists'})
+        return res.status(400).send({'error': 'user already exists'})
     }
 
     // CREATE NEW USER 
@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
 
     const {error} = loginValidation(req.body)
     if(error) {
-        return res.status(400).send({"message":  error.details[0].message})
+        return res.status(400).send({"error":  error.details[0].message})
     }
 
     const { email, password } = req.body
@@ -72,7 +72,7 @@ router.post('/login', async (req, res) => {
     let user = await dbquery(sql)
 
     if(user.length === 0) {
-        return res.status(400).send({'message': 'invalid user!'})
+        return res.status(400).send({'error': 'invalid user!'})
     }
     user = user[0]
 
@@ -80,13 +80,13 @@ router.post('/login', async (req, res) => {
 
     const validPass = await bcrypt.compare(password, user.password) 
     if(!validPass) {
-        return res.status(400).send({'message': 'invalid password'})
+        return res.status(400).send({'error': 'invalid password'})
     }
 
     // CREATE AND ASSIGN NEW TOKEN
    
     const token = jwt.sign({ id: user.id }, keys.TOKEN_SECRET, {expiresIn: 86400 });
-    res.header('auth-token', token).send({ token: token })
+    res.header('auth-token', token).send({ 'message': 'token generated', token: token })
 })
 
 
