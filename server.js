@@ -1,0 +1,49 @@
+const   express = require('express'),
+        mysql = require('mysql'),
+        path = require('path'),
+        keys = require('./config/keys'),
+        util = require('util'),
+        cors = require('cors'),
+        app = express()
+
+
+// IMPORT ROUTES 
+const authRoutes = require('./routes/auth')
+
+
+// CONNECT TO DB
+const db = mysql.createConnection({
+    host        : 'localhost',
+    user        : 'root',
+    password    : '4004',
+    database    : 'snaphot'
+});
+
+db.connect((err) => {
+    if(err) throw err;
+    console.log('db connected...')
+})
+
+global.db = db;
+global.dbquery = util.promisify(db.query).bind(db)
+
+// MIDDLEWARES 
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+// CORS
+app.use(cors()) 
+
+
+// ROUTE MIDDLEWARES 
+app.use('/api/users', authRoutes)
+
+
+// HOSTING CONFIG
+
+
+// PORT 
+const port = process.env.PORT || 5000;
+
+
+// LISTENING
+app.listen(port, console.log('server running...'))
