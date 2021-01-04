@@ -90,5 +90,29 @@ router.post('/login', async (req, res) => {
 })
 
 
+// GET USER WITH USER ID 
+
+router.get('/:userId', async (req, res) => {
+    const { userId } = req.params
+
+    let sql = `SELECT * FROM users WHERE id = '${userId}'`
+    const userFound = await dbquery(sql)
+
+    if(userFound.length === 0) {
+        return res.status(400).send({'error': 'User does not exist'})
+    }
+    
+    delete userFound[0].password
+
+    return res.status(200).send({
+        'message': 'user found',
+        user: userFound[0]
+    })
+})
+
+
+// UPDATE USER
+
+
 
 module.exports = router

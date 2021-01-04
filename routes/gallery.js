@@ -62,12 +62,18 @@ router.get('/', verify, async (req, res) => {
 
 router.delete('/:galleryId', verify, async(req, res) => {
     const { galleryId } = req.params
+    const userId = req.userId
 
     let sql = `SELECT * FROM gallery WHERE id = '${galleryId}'`
     const galleyFound = await dbquery(sql)
 
+    // CHECK IF THE GALLERY EXISTS & USER OWNS THIS GALLERY 
+
     if(galleyFound.length === 0) {
         return res.status(400).send({'error': 'No gallery found'})
+    }
+    else if(galleyFound[0].created_by !== userId) {
+        return res.status(400).send({'error': 'Only the owner can delete the gallery'})
     }
 
     // DELETE FROM DB
@@ -80,10 +86,6 @@ router.delete('/:galleryId', verify, async(req, res) => {
 
 
 // UPDATE A GALLERY (name only)
-
-// router.patch('/', verify, async(req, res) => {
-
-// }
 
 
 

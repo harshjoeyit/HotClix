@@ -176,13 +176,22 @@ router.get('/:imageId', verify, async (req, res) => {
 }) 
 
 
-// LIST ALL IMAGES IN A GALLERY
+// LIST ALL IMAGES
+// IN GALLERY, BY USER & ALL 
 
 router.get('/', verify, async (req, res) => {
     const queryObject = url.parse(req.url,true).query;
-    const { galleryId } = queryObject
+    const { galleryId, userId } = queryObject
     
-    let sql = `SELECT * FROM images WHERE gallery = '${galleryId}'`
+    let sql = `SELECT * FROM images`
+
+    if(userId) {
+        sql = `${sql} WHERE uploaded_by = '${userId}'`
+    } 
+    else if(galleryId) {
+        sql = `${sql} WHERE gallery = '${galleryId}'`
+    }
+
     const images = await dbquery(sql)
 
     let response = { images };
@@ -198,6 +207,29 @@ router.get('/', verify, async (req, res) => {
 
 // DELETE IMAGE 
 
+router.delete('/:imageId', verify, async(req, res) => {
+    const { imageId } = req.params
+    const userId = req.userId
+
+    let sql = `SELECT * FROM images WHERE id = '${imageId}'`
+    const imageFound = await dbquery(sql)
+
+    // CHECK IF THE IMAGE EXISTS & USER OWNS THIS IMAGE 
+
+    if(imageFound.length === 0) {
+        return res.status(400).send({'error': 'No image found'})
+    }
+    else if(imageFound[0].uploaded_by !== userId) {
+        return res.status(400).send({'error': 'Only the owner can delete the image'})
+    }
+
+    // DELETE FROM DB
+
+    sql = `DELETE FROM images WHERE id = ${imageId}`
+    const dbRes = await dbquery(sql)
+
+    res.status(204).send()
+})
 
 
 // UPDATE IMAGE 
