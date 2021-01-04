@@ -1,6 +1,6 @@
 
 const checkLoggedIn = () => {
-    const auth_token = localStorage.getItem('auth_token')
+    const auth_token = localStorage.getItem('auth-token')
     if(auth_token) {
         return true
     }

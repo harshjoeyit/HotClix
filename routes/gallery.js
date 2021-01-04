@@ -42,7 +42,6 @@ router.post('/', verify, async(req, res) => {
 // LIST ALL GALLERIES FOR A USER 
 
 router.get('/', verify, async (req, res) => {
-    const queryObject = url.parse(req.url,true).query;
     const userId = req.userId
     
     let sql = `SELECT * FROM gallery WHERE created_by = '${userId}'`

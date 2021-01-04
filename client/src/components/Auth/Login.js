@@ -37,10 +37,10 @@ const Login = () => {
             .post(`api/users/login`, formData)
             .then(res => {
                 setError('')
-                localStorage.setItem('auth_token', res.data.token)
+                localStorage.setItem('auth-token', res.data.token)
                 setTimeout(() => {
                     history.push('/posts');
-                }, 500);
+                }, 1500);
             })
             .catch(err => {
                 const data = err.response.data;

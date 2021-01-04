@@ -12,7 +12,7 @@ const Logout = () => {
 		return <></>;
     }
     
-    localStorage.removeItem('auth_token')
+    localStorage.removeItem('auth-token')
     history.push('/login');
 	window.location.reload();
 
