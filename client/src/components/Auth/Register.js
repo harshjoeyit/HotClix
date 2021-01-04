@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory, Link } from 'react-router-dom';
-import Header from '../Nav/Header';
-
+import './forms.css'
 
 const Register = () => {
     const history = useHistory();
@@ -27,23 +26,23 @@ const Register = () => {
         e.preventDefault();
         console.log(formData)
 
-        if(formData.email === "" || formData.password === "" || 
-            formData.username === "" || formData.password2 ===  "") {
+        if (formData.email === "" || formData.password === "" ||
+            formData.username === "" || formData.password2 === "") {
             setError('Fill the form completely')
             return;
         }
 
-        if(formData.password !== formData.password2) {
+        if (formData.password !== formData.password2) {
             setError('Passwords do not match')
             return;
         }
-        
+
         const body = {
             username: formData.username,
             email: formData.email,
             password: formData.password
         }
-        
+
         // MAKE REQUEST TO REGISTER ENDPOINT
 
         axios
@@ -65,18 +64,16 @@ const Register = () => {
     }
 
     return (
-        <>
-        <Header />
         <div className="form-container">
             <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 {
-                    (error.length > 0) 
-                    ? <div className="error">{ error }</div> 
-                    : ''
+                    (error.length > 0)
+                        ? <div className="error">{error}</div>
+                        : ''
                 }
-                <div className="input-container"> 
-                    <input 
+                <div className="input-container">
+                    <input
                         type="text"
                         required
                         name="username"
@@ -84,7 +81,7 @@ const Register = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="input-container"> 
+                <div className="input-container">
                     <input
                         type="email"
                         required
@@ -93,7 +90,7 @@ const Register = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="input-container"> 
+                <div className="input-container">
                     <input
                         type="password"
                         required
@@ -102,7 +99,7 @@ const Register = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="input-container"> 
+                <div className="input-container">
                     <input
                         type="password2"
                         required
@@ -120,7 +117,6 @@ const Register = () => {
                 </div>
             </form>
         </div>
-        </>
     )
 }
 

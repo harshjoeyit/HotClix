@@ -1,0 +1,78 @@
+
+.form-container {
+    font-family: 'Raleway';
+    width: 100vw;
+    height: 80vh;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: column;
+}
+
+.form-container h1 {
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px;
+      color: var(--color2);
+}
+
+form {
+    width: 500px;
+    padding: 20px;
+    margin: 120px auto;
+    border-radius: 5px;
+    box-shadow: var(--light-box-shadow);
+    background-color: var(--bg-color);
+}
+
+.extralink {
+    margin: auto;
+}
+
+input, textarea {
+    width: 100%;
+    font-size: 15px;
+    padding: 12px 15px;
+    margin: 5px 0;
+    outline: none;
+    border-radius: 3px;
+    border: none;
+    border-radius: 3px;
+    color: var(--color1);
+}
+
+.form-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+form button {
+    font-size: 15px;
+    padding: 8px 15px;  
+    border-radius: 3px;
+    margin: 3px;
+    background-color: var(--color1);
+    color: white;
+    transition: all ease-in 0.2s;
+}
+
+form button:hover {
+    background-color: var(--color2);
+}
+
+.error {
+    text-align: center;
+    padding: 5px;
+    border-radius: 3px;
+    color: rgb(226, 28, 28);
+    background-color: rgb(240, 193, 193);
+}
+
+@media only screen and (max-width: 600px) {
+    form {
+        margin-top: 50px;
+        width: 100%;
+    }
+}

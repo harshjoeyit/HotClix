@@ -6,6 +6,7 @@ import AuthenticatedRoute from './Routes/AuthenticatedRoute'
 import './main.css'
 
 // components
+import Header from './components/Utils/Nav/Header'
 import App from './App'
 import Register from './components/Auth/Register'
 import Login from './components/Auth/Login'
@@ -14,8 +15,8 @@ import NotFound from './components/Error/NotFound'
 
 const routing = (
   <Router>
+    <Header />
     <Switch>
-
       <AuthenticatedRoute
         exact
         path='/register'
@@ -32,7 +33,7 @@ const routing = (
         path='/logout'
         component={Logout}
       />
-      
+
       <Route
         exact path='/'
         component={App}>

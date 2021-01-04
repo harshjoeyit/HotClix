@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
-import Header from '../Nav/Header';
-import '../Utils/forms.css'
-
+import './forms.css'
 
 const Login = () => {
 
@@ -39,8 +37,9 @@ const Login = () => {
                 setError('')
                 localStorage.setItem('auth-token', res.data.token)
                 setTimeout(() => {
-                    history.push('/posts');
-                }, 1500);
+                    history.push('/');
+                    window.location.reload()
+                }, 500);
             })
             .catch(err => {
                 const data = err.response.data;
@@ -50,11 +49,9 @@ const Login = () => {
     }
 
     return (
-        <>
-        <Header />
         <div className="form-container">
             <form onSubmit={handleSubmit}>
-                <h1>Log In</h1>
+                <h1>Login</h1>
                 {
                     (error.length > 0) 
                     ? <div className="error">{ error }</div> 
@@ -88,7 +85,6 @@ const Login = () => {
             </form>
         
         </div>
-        </>
     )
 }
 

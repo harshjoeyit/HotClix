@@ -1,15 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('//fonts.googleapis.com/css?family=Cookie');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap');
+
 
 :root {
     --bg-color: #f5efef;
-    --orange: #f37521;
-    --pink: #ff4f6c;
+    --color1: #f37521;
+    --color2: #ff4f6c;
+    --color3: rgb(48, 147, 172);
+
+    --light-box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06);
+
+    --dark-box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.048),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.055),
+    0 100px 80px rgba(0, 0, 0, 0.068);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
+}
+
+button {
+    outline: none;
+    border: none;
+    border-radius: 0;
+}
+
+button:hover {
+    cursor: pointer;
 }

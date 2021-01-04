@@ -1,0 +1,36 @@
+
+/* GRADIENT BACKGROUND AND HERO TEXT  */
+
+.bg-gradient {
+    height: 400px;
+    margin: auto;
+    background: url('./Images/hero-gradient.svg');
+    background-size: 100vh;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-text {
+    font-family: 'Inter', 'Raleway', sans-serif !important;
+    height: fit-content;
+    font-size: 1.3rem;
+    text-align: center;
+    letter-spacing: -1.8px;
+    word-spacing: 3px;
+}
+
+@media (max-width: 600px) {
+    .bg-gradient {
+        height: 300px;
+        background-size: 80vh;
+    }
+    .hero-text {
+        font-size: 0.8rem;
+    }
+}
