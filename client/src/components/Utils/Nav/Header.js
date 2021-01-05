@@ -17,7 +17,7 @@ function Header() {
     // FOR HEADER
     const [show, handleShow] = useState(false);
     // USER INFO 
-    const [userData, setUserData] = useState({user: {}, loading: true})
+    const [userData, setUserData] = useState({ user: {}, loading: true })
 
     const handleOpenNav = () => {
         let el = navbarRef.current;
@@ -44,14 +44,14 @@ function Header() {
     // IF USER LOGGED IN ADD LINK TO PROFILE
 
     useEffect(() => {
-        if(checkLoggedIn()) {
-            const findUser = async() => {
+        if (checkLoggedIn()) {
+            const findUser = async () => {
                 const user = await getAuthenticatedUser()
                 setUserData({
                     user,
                     loading: false
                 })
-            } 
+            }
             findUser()
         }
     }, [])
@@ -60,12 +60,15 @@ function Header() {
     return (
         <>
             <div className={show ? `header_black header` : `header`}>
-                <img
-                    className='logo'
-                    src={logo}
-                    onClick={() => { history.push('/') }}
-                    alt='logo'
-                />
+                <div style={{display:'flex', justifyContent:'center'}}>
+                    <img
+                        className='logo'
+                        src={logo}
+                        onClick={() => { history.push('/') }}
+                        alt='logo'
+                    />
+                    <span className="brand">HotClix </span>
+                </div>
 
                 {/* burgur */}
                 <span className='openbtn' onClick={handleOpenNav}>
@@ -97,9 +100,9 @@ function Header() {
                                             onClick={handlePageChange}
                                         >
                                             <span className='navItem'>
-                                            {
-                                                userData.loading ? '...' : `@${userData.user.username}`
-                                            }
+                                                {
+                                                    userData.loading ? '...' : `@${userData.user.username}`
+                                                }
                                             </span>
                                         </div>
                                     </Link>

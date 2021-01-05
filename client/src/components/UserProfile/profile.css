@@ -1,4 +1,6 @@
 
+/* USER DETAILS BANNER  */
+
 .top-detail-container, .profile-details {
 	display: flex;
 	justify-content: center;
@@ -67,4 +69,29 @@
 		font-size: 15px;
 		color: grey;
 	}
+}
+
+
+/* SELECT VIEW BUTTONS */
+
+.select-view-btns {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.select-view-btns button {
+	padding: 5px 15px 10px 15px;
+	background: transparent;
+	font-size: 18px;
+	text-align: center;
+	transition: all ease 0.25s;
+}
+
+.select-view-btns button:hover {
+	color: grey;
+}
+
+.view-active {
+	border-top: 2px solid grey;
 }

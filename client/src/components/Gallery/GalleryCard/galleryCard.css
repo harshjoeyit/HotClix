@@ -1,0 +1,35 @@
+
+.gallery-card {
+    font-family: 'Raleway', sans-serif;
+    width: 250px;
+    height: 250px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(218, 213, 223, 0.397);
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: var(--light-box-shadow);
+}
+
+.gallery-name {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.card-username {
+    font-size: 15px;
+}
+
+.photo-cnt {
+    text-align: right;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 600px) {
+    .gallery-card {
+        width: 90vw;
+    }
+}

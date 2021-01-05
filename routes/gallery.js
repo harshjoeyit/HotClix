@@ -41,20 +41,48 @@ router.post('/', verify, async(req, res) => {
 
 // LIST ALL GALLERIES FOR A USER 
 
-router.get('/', verify, async (req, res) => {
-    const userId = req.userId
+router.get('/', async (req, res) => {
+    const queryObject = url.parse(req.url,true).query;
+    const { userId } = queryObject
     
     let sql = `SELECT * FROM gallery WHERE created_by = '${userId}'`
     const galleries = await dbquery(sql)
 
-    let response = { galleries };
-    if(galleries.length === 0) {
-        response.error = 'No galleries found'
-    } else {
-        response.message = 'Galleries found'
+    return res.status(200).send({
+        'message': 'galleries found',
+        galleries
+    })
+})
+
+
+// GET A GALLERY 
+
+router.get('/:galleryId', async (req, res) => {
+    const { galleryId } = req.params
+    
+    // FIND GALLERY BY THIS ID
+
+    let sql = `SELECT * FROM gallery WHERE id = '${galleryId}'`
+    let galleryFound = await dbquery(sql)
+
+    if(galleryFound.length === 0) {
+        return res.status(400).send({'error': 'No gallery found'})
     }
 
-    return res.status(200).send(response)
+    galleryFound = galleryFound[0]
+    let userId = galleryFound.created_by
+
+    sql = `SELECT * FROM users WHERE id = '${userId}'`
+    let userFound = await dbquery(sql)
+
+    // CHANGE USER ID TO USERNAME
+
+    galleryFound.created_by_username = userFound[0].username
+
+    return res.status(200).send({
+        'message': 'gallery found',
+        gallery: galleryFound
+    })
 })
 
 
@@ -65,14 +93,14 @@ router.delete('/:galleryId', verify, async(req, res) => {
     const userId = req.userId
 
     let sql = `SELECT * FROM gallery WHERE id = '${galleryId}'`
-    const galleyFound = await dbquery(sql)
+    const galleryFound = await dbquery(sql)
 
     // CHECK IF THE GALLERY EXISTS & USER OWNS THIS GALLERY 
 
-    if(galleyFound.length === 0) {
+    if(galleryFound.length === 0) {
         return res.status(400).send({'error': 'No gallery found'})
     }
-    else if(galleyFound[0].created_by !== userId) {
+    else if(galleryFound[0].created_by !== userId) {
         return res.status(400).send({'error': 'Only the owner can delete the gallery'})
     }
 

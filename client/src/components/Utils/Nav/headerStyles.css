@@ -23,6 +23,13 @@
 	cursor: pointer;
 }
 
+.brand {
+	font-family: 'Inter';
+	font-size: 25px;
+	font-weight: bold;
+	letter-spacing: -1.6px;
+}
+
 .openbtn {
 	/* background: linear-gradient(to right, var(--color-1), var(--color-1));
 	-webkit-background-clip: text;

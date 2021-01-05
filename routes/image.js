@@ -95,11 +95,20 @@ const saveUpload = async (uploadData) => {
 
     const { userId, galleryId, fileName, fileUrl, thumbnailUrl } = uploadData
 
-    const sql = `INSERT INTO images (uploaded_by, gallery, name, extension, file_url, thumbnail_url)
+    // INSERT INTO images TABLE
+
+    let sql = `INSERT INTO images (uploaded_by, gallery, name, extension, file_url, thumbnail_url)
     VALUES('${userId}', '${galleryId}', '${fileName}', 'jpg', '${fileUrl}', '${thumbnailUrl}')`
 
-    const dbRes = await dbquery(sql)
-    return { id: dbRes.insertId }
+    let dbRes = await dbquery(sql)
+    let res = { id: dbRes.insertId }
+    
+    // INCREASE PHOTO COUNT in GALLERY TABLE 
+
+    sql = `UPDATE gallery SET total_photos = total_photos + 1 WHERE id = '${galleryId}'`
+    dbRes = await dbquery(sql)
+
+    return res
 }
 
 
@@ -160,7 +169,7 @@ router.post('/', verify, async (req, res) => {
 
 // GET AN IMAGE 
 
-router.get('/:imageId', verify, async (req, res) => {
+router.get('/:imageId', async (req, res) => {
     const { imageId } = req.params
 
     let sql = `SELECT * FROM images WHERE id = '${imageId}'`
@@ -179,7 +188,7 @@ router.get('/:imageId', verify, async (req, res) => {
 // LIST ALL IMAGES
 // IN GALLERY, BY USER & ALL 
 
-router.get('/', verify, async (req, res) => {
+router.get('/', async (req, res) => {
     const queryObject = url.parse(req.url,true).query;
     const { galleryId, userId } = queryObject
     
@@ -194,14 +203,10 @@ router.get('/', verify, async (req, res) => {
 
     const images = await dbquery(sql)
 
-    let response = { images };
-    if(images.length === 0) {
-        response.error = 'No images found'
-    } else {
-        response.message = 'Images found'
-    }
-
-    return res.status(200).send(response)
+    return res.status(200).send({
+        "message": "images found",
+        images
+    })
 })
 
 
