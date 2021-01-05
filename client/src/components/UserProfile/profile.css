@@ -1,0 +1,70 @@
+
+.top-detail-container, .profile-details {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.top-detail-container {
+	background: linear-gradient(360deg, rgba(255, 255, 255, 0), rgb(209, 209, 209));
+	font-family: 'Raleway';
+	height: 250px;
+}
+
+.profile-details {
+	width: fit-content;
+}
+
+.user-info .username {
+	font-size: 35px;
+	font-weight: bold;
+	padding-left: 5px;
+}
+
+.user-info .user-email {
+	font-size: 20px;
+	color: grey;
+}
+
+/* USER AVATAR */
+
+.avatar {
+	font-family: 'Inter', 'Raleway', sans-serif;
+	height: 40px;
+	width: 40px;
+	border-radius: 20px;
+	padding-top: 10px;
+	font-size: 18px;
+	background-color: rgb(47, 47, 47);
+	color: var(--bg-color);
+	font-weight: bold;
+	text-align: center;
+	margin-right: 5px;
+}
+
+.avatar-big {
+	height: 90px;
+	width: 90px;
+	border-radius: 45px;
+	padding-top: 18px;
+	font-size: 50px;
+	margin-right: 10px;
+}
+
+@media screen and (max-width: 600px) {
+	.avatar-big {
+		height: 60px;
+		width: 60px;
+		border-radius: 30px;
+		padding-top: 10px;
+		font-size: 35px;
+	}
+	.user-info .username {
+		font-size: 25px;
+	}
+	
+	.user-info .user-email {
+		font-size: 15px;
+		color: grey;
+	}
+}

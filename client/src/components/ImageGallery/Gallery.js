@@ -1,5 +1,5 @@
 import React from 'react'
-import ImageItem from './OverlayImage'
+import ImageItem from './ImageItem/OverlayImage'
 import './gallery.css'
 
 import one from '../../Images/one.jpg'

@@ -11,7 +11,10 @@ import App from './App'
 import Register from './components/Auth/Register'
 import Login from './components/Auth/Login'
 import Logout from './components/Auth/Logout'
+import Profile from './components/UserProfile/Profile'
+import GalleryHome from './components/Gallery/GalleryHome'
 import NotFound from './components/Error/NotFound'
+
 
 const routing = (
   <Router>
@@ -32,6 +35,16 @@ const routing = (
         exact
         path='/logout'
         component={Logout}
+      />
+      <PrivateRoute
+        exact
+        path='/profile/:userId'
+        component={Profile}
+      />
+      <PrivateRoute
+        exact
+        path='/gallery/:galleryId'
+        component={GalleryHome}
       />
 
       <Route

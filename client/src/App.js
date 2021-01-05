@@ -1,19 +1,9 @@
-import React, { useEffect } from 'react'
-import axios from 'axios'
-import bgGradient from './Images/hero-gradient.svg'
+import React from 'react'
+import ImageGallery from './components/ImageGallery/Gallery';
 import './App.css';
 
-import ImageGallery from './components/ImageElements/Gallery';
-import Image from './components/ImageElements/OverlayImage';
-
 function App() {
-
-  // useEffect(() => {
-  //   axios.get('api/gallery', {headers: getHeaders()})
-  //     .then(console.log)
-  //     .catch(console.log)
-  // })
-
+  
   return (
     <div className="main-content">
       <div className="bg-gradient">

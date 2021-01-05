@@ -36,7 +36,8 @@
     padding: 10px 10px 0 10px;
     display: flex;
     justify-content: space-between;
-    align-content: center;
+	align-content: center;
+	color: white;
 }
 
 .overlay-image-item:hover .overlay-bottom {

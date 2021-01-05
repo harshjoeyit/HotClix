@@ -28,6 +28,7 @@
 }
 
 button {
+    font-family: 'Raleway';
     outline: none;
     border: none;
     border-radius: 0;
@@ -35,4 +36,8 @@ button {
 
 button:hover {
     cursor: pointer;
+}
+
+.fa {
+    margin: 5px;
 }
