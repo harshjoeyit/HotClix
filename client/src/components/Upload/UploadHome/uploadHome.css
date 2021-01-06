@@ -1,0 +1,19 @@
+
+.upload-container {
+    font-family: 'Raleway', sans-serif;
+    margin-top: 40px;
+}
+
+.select-gallery-title {
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: calc((100vw - 1300px)/2 + 10px);
+    margin-right: calc((100vw - 1300px)/2 + 10px);
+}
+
+@media screen and (max-width: 1300px) {
+    .select-gallery-title {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}

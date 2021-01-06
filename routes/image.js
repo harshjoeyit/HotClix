@@ -173,14 +173,23 @@ router.get('/:imageId', async (req, res) => {
     const { imageId } = req.params
 
     let sql = `SELECT * FROM images WHERE id = '${imageId}'`
-    const imageFound = await dbquery(sql)
+    let imageFound = await dbquery(sql)
 
     if(imageFound.length === 0) {
         return res.status(400).send({'error': 'Image does not exist'})
     }
+
+    imageFound = imageFound[0]
+
+    // GET USER 
+    sql = `SELECT * FROM users WHERE id = '${imageFound.uploaded_by}'`;
+    let user = await dbquery(sql)
+
+    imageFound.username = user[0].username
+
     return res.status(200).send({
         'message': 'image found',
-        image: imageFound[0]
+        image: imageFound
     })
 }) 
 
@@ -200,6 +209,8 @@ router.get('/', async (req, res) => {
     else if(galleryId) {
         sql = `${sql} WHERE gallery = '${galleryId}'`
     }
+
+    sql = `${sql} ORDER BY created_at DESC`
 
     const images = await dbquery(sql)
 

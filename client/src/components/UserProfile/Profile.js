@@ -54,7 +54,7 @@ function Profile() {
                 })
             })
             .catch(console.log)
-    }, [])
+    }, [userId])
 
 
 

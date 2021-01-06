@@ -13,6 +13,8 @@ import Login from './components/Auth/Login'
 import Logout from './components/Auth/Logout'
 import Profile from './components/UserProfile/Profile'
 import GalleryHome from './components/Gallery/GalleryHome'
+import UploadHome from './components/Upload/UploadHome/UploadHome'
+import CreateGallery from './components/Gallery/CreateGallery/CreateGallery';
 import NotFound from './components/Error/NotFound'
 
 
@@ -38,15 +40,25 @@ const routing = (
       />
       <PrivateRoute
         exact
+        path='/upload'
+        component={UploadHome}
+      />
+      <PrivateRoute
+        exact
+        path='/create-gallery'
+        component={CreateGallery}
+      />
+
+      <Route
+        exact
         path='/profile/:userId'
         component={Profile}
       />
-      <PrivateRoute
+      <Route
         exact
         path='/gallery/:galleryId'
         component={GalleryHome}
       />
-
       <Route
         exact path='/'
         component={App}>

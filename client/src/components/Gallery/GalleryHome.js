@@ -8,39 +8,39 @@ import './galleryHome.css'
 
 function UserGallery() {
 
-    const {  galleryId } = useParams()
+    const { galleryId } = useParams()
 
     // STATES
     const [galleryData, setGalleryData] = useState({ gallery: {}, loading: true })
     const [galleryImages, setGalleryImages] = useState({ images: [], loading: true })
 
     useEffect(() => {
-        const findGalleryData = async() => {
-            
-            // GALLERY DATA 
 
-            getGalleryDetails(galleryId)
-                .then(gallery => {
-                    console.log(gallery)
-                    setGalleryData({
-                        gallery: gallery,
-                        loading: false
-                    })
-                })
-            
-            // GALLERY IMAGES 
+        // GALLERY DATA 
 
-            getGalleryImages(galleryId)
-                .then(images => {
-                    console.log(images)
-                    setGalleryImages({
-                        images: images,
-                        loading: false
-                    })
+        getGalleryDetails(galleryId)
+            .then(gallery => {
+                console.log(gallery)
+                setGalleryData({
+                    gallery: gallery,
+                    loading: false
                 })
-        }
-        findGalleryData()
-    }, [])
+            })
+            .catch(console.log)
+
+        // GALLERY IMAGES 
+
+        getGalleryImages(galleryId)
+            .then(images => {
+                console.log(images)
+                setGalleryImages({
+                    images: images,
+                    loading: false
+                })
+            })
+            .catch(console.log)
+
+    }, [galleryId])
 
     // TODO 
     // enable download 
@@ -52,44 +52,44 @@ function UserGallery() {
                 <div className="gallery-details">
                     <div className="gallery-and-user">
                         <div className="gallery-title">
-                        {
-                            galleryData.loading
-                            ? 'loading...'
-                            : titleCase(galleryData.gallery.name)
-                        }
-                        </div>
-                        <div className="gallery-user">
-                            <UserAvatarSmall 
-                                letter= {
-                                    galleryData.loading
-                                    ? '.'
-                                    : galleryData.gallery.created_by_username.charAt(0)
-                                } 
-                            />
-                            <p>
                             {
                                 galleryData.loading
-                                ? 'loading...'
-                                : galleryData.gallery.created_by_username
+                                    ? 'loading...'
+                                    : titleCase(galleryData.gallery.name)
                             }
+                        </div>
+                        <div className="gallery-user">
+                            <UserAvatarSmall
+                                letter={
+                                    galleryData.loading
+                                        ? '.'
+                                        : galleryData.gallery.created_by_username.charAt(0)
+                                }
+                            />
+                            <p>
+                                {
+                                    galleryData.loading
+                                        ? 'loading...'
+                                        : galleryData.gallery.created_by_username
+                                }
                             </p>
                         </div>
                     </div>
                     <div className="gallery-options">
-                        <p> 
-                        {
-                            galleryData.loading
-                            ? '... photos'
-                            : `${galleryData.gallery.total_photos} photos`
-                        }
+                        <p>
+                            {
+                                galleryData.loading
+                                    ? '... photos'
+                                    : `${galleryData.gallery.total_photos} photos`
+                            }
                         </p>
                         <button>Download</button>
                         {
                             galleryData.loading
-                            ? <></>
-                            : isUserOwner(galleryData.gallery.created_by)
-                            ? <button>Delete</button>
-                            : <></>
+                                ? <></>
+                                : isUserOwner(galleryData.gallery.created_by)
+                                    ? <button>Delete</button>
+                                    : <></>
                         }
                     </div>
                 </div>

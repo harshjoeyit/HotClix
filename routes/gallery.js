@@ -45,7 +45,8 @@ router.get('/', async (req, res) => {
     const queryObject = url.parse(req.url,true).query;
     const { userId } = queryObject
     
-    let sql = `SELECT * FROM gallery WHERE created_by = '${userId}'`
+    let sql = `SELECT * FROM gallery WHERE created_by = '${userId}' 
+                ORDER BY created_at DESC`
     const galleries = await dbquery(sql)
 
     return res.status(200).send({

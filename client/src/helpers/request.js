@@ -6,6 +6,15 @@ import getHeaders from '.'
 // GET USER DETAILS
 
 export const getUserDetails = async (userId) => {
+    if(userId === undefined) {
+
+        // GET AUTHENTICATED USER 
+
+        const token = localStorage.getItem('auth-token')
+        const user = JSON.parse(atob(token.split('.')[1]))
+        userId = user.id
+    }
+
     try {
         const res = await axios.get(`/api/users/${userId}`)
         return res.data.user
@@ -87,6 +96,15 @@ export const getGalleryDetails = async (galleryId) => {
 // GET USER'S GALLERIES 
 
 export const getUsersGalleries = async (userId) => {
+    if(userId === undefined) {
+
+        // GET AUTHENTICATED USER 
+
+        const token = localStorage.getItem('auth-token')
+        const user = JSON.parse(atob(token.split('.')[1]))
+        userId = user.id
+    }
+    
     try {
         const res = await axios.get(`/api/gallery?userId=${userId}`)
         return res.data.galleries
@@ -110,3 +128,18 @@ export const getGalleryImages = async (galleryId) => {
         return err
     }
 }
+
+
+// CREATE NEW GALLERY 
+
+export const createGallery = async (body) => {
+    try {
+        const headers = getHeaders()
+        const res = await axios.post(`/api/gallery`, body, { headers: headers })
+        return res
+    }
+    catch(err) {
+        return err
+    }
+}
+

@@ -1,0 +1,26 @@
+
+.preview-img {
+    min-width: 300px;
+    max-width: 300px;
+    max-height: 200px;
+    overflow: hidden;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: ;
+    
+}
+
+.preview-img img {
+    width: 100%;
+    border-radius: 3px;
+}
+
+@media screen and (max-width: 600px) {
+    .preview-img {
+        min-width: 170px;
+        max-width: 170px;
+        max-height: 140px;
+    }
+}

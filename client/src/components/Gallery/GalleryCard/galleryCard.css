@@ -1,5 +1,5 @@
 
-.gallery-card {
+.gallery-card, .gallery-select-card {
     font-family: 'Raleway', sans-serif;
     width: 250px;
     height: 250px;
@@ -7,10 +7,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: rgba(218, 213, 223, 0.397);
     border-radius: 5px;
-    margin: 10px;
+    margin: 10px 20px 10px 0;
+    background: linear-gradient(135deg, rgb(143, 216, 238), rgb(232, 232, 243));
     box-shadow: var(--light-box-shadow);
+    transition: all ease 0.25s;
 }
 
 .gallery-name {
@@ -28,8 +29,17 @@
     font-size: 15px;
 }
 
-@media screen and (max-width: 600px) {
-    .gallery-card {
-        width: 90vw;
-    }
+.gallery-active {
+    border: 3px solid rgb(185, 133, 235);
+}
+
+.gallery-select-card {
+    min-height: 130px;
+    min-width: 200px;
+    height: fit-content;
+    cursor: pointer;
+}
+
+.gallery-select-card .gallery-name {
+    font-size: 20px;
 }

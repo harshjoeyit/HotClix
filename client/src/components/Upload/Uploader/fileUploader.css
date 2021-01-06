@@ -1,0 +1,118 @@
+
+.upload-form-container {
+    margin: 20px calc((100vw - 1300px)/2 + 10px);
+}
+
+/* DRAG AND DROP */
+
+.drop-region-container {
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    border: 3px dashed rgb(206, 206, 206);
+    border-radius: 10px;
+    background-color: rgb(246, 246, 246);
+}
+
+.drop-region {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.drop-region i {
+    font-size: 80px;
+}
+
+.drop-region h2 {
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* CUSTOM FILE INPUT */
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.custom-file-input::before {
+    font-family: 'Raleway';
+    content: 'Click to select files';
+    display: block;
+    border-radius: 3px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+    color: rgba(87, 87, 87, 0.767);
+    border: 1px solid rgba(87, 87, 87, 0.692);
+}
+.custom-file-input:hover::before {
+    border-color: black;
+}
+.custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.upload-btn {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.upload-btn button, .upload-btn .uploading-images {
+    display: block;
+    padding: 10px 50px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 3px;
+    background-color: var(--color1);
+    color: white;
+    margin-right: 10px;
+}
+
+.upload-btn button:hover {
+    background-color: var(--color2);
+}
+
+.upload-btn .uploading-images {
+    background-color: rgb(103, 180, 16);
+    width: fit-content;
+}
+
+.rotating {
+    animation: rotating 1.5s linear infinite;
+}
+@keyframes rotating {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+@media screen and (max-width: 1300px) {
+    .upload-form-container {
+        margin: 20px;
+    }
+    .drop-region i {
+        font-size: 60px;
+    }
+    
+    .drop-region h2 {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .upload-btn button, .upload-btn .uploading-images {
+        padding: 8px 30px;
+        font-size: 12px;
+    }
+}

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import checkLoggedIn from '../../Auth/checkLoggedIn'
-import { getAuthenticatedUser } from '../../../helpers/request'
+import { getUserDetails } from '../../../helpers/request'
 
 import './headerStyles.css'
 import logo from '../../../Images/logo.png'
@@ -21,7 +21,7 @@ function Header() {
 
     const handleOpenNav = () => {
         let el = navbarRef.current;
-        el.style.width = el.style.width === '80%' ? '0' : '80%';
+        el.style.width = el.style.width === '60%' ? '0' : '60%';
         setBurger(!burger);
     }
 
@@ -46,7 +46,7 @@ function Header() {
     useEffect(() => {
         if (checkLoggedIn()) {
             const findUser = async () => {
-                const user = await getAuthenticatedUser()
+                const user = await getUserDetails()
                 setUserData({
                     user,
                     loading: false
@@ -60,11 +60,13 @@ function Header() {
     return (
         <>
             <div className={show ? `header_black header` : `header`}>
-                <div style={{display:'flex', justifyContent:'center'}}>
+                <div 
+                    onClick={() => { history.push('/') }}
+                    style={{display:'flex', justifyContent:'center', cursor:'pointer'}}
+                >
                     <img
                         className='logo'
                         src={logo}
-                        onClick={() => { history.push('/') }}
                         alt='logo'
                     />
                     <span className="brand">HotClix </span>
