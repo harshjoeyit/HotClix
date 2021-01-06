@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Gallery from '../ImageGallery/Gallery'
 import { UserAvatarSmall } from '../UserProfile/Profile'
-import { getGalleryDetails, getGalleryImages, isUserOwner } from '../../helpers/request'
+import { getGalleryDetails, getImages, isUserOwner } from '../../helpers/request'
 import { titleCase } from '../../helpers'
 import './galleryHome.css'
 
@@ -30,7 +30,7 @@ function UserGallery() {
 
         // GALLERY IMAGES 
 
-        getGalleryImages(galleryId)
+        getImages(undefined, galleryId)
             .then(images => {
                 console.log(images)
                 setGalleryImages({

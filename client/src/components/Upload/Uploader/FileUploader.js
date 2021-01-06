@@ -95,6 +95,7 @@ function FileUploader({ galleryId }) {
             ...pr,
             images: files
         }))
+        setError('')
 
         if (files.length > 0) {
 

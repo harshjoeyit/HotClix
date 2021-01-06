@@ -4,6 +4,7 @@
 }
 
 .overlay-image-item {
+	font-family: 'Raleway', sans-serif;
 	position: relative;
 	display: inline-block;
 	transition: all 0.3s ease;
@@ -12,6 +13,12 @@
     vertical-align: middle;
     width: 100%;
     cursor: pointer;
+}
+
+/* DISABLE DOWNLOADS */
+
+.overlay-image-item img {
+	pointer-events: none;
 }
 
 .overlay-image {
@@ -32,7 +39,7 @@
 	left: 0;
 }
 
-.image-info {
+.image-info-overlay {
     padding: 10px 10px 0 10px;
     display: flex;
     justify-content: space-between;

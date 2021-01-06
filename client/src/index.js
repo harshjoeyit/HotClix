@@ -15,6 +15,7 @@ import Profile from './components/UserProfile/Profile'
 import GalleryHome from './components/Gallery/GalleryHome'
 import UploadHome from './components/Upload/UploadHome/UploadHome'
 import CreateGallery from './components/Gallery/CreateGallery/CreateGallery';
+import ImageDetail from './components/ImageGallery/ImageDetail/ImageDetail';
 import NotFound from './components/Error/NotFound'
 
 
@@ -53,6 +54,11 @@ const routing = (
         exact
         path='/profile/:userId'
         component={Profile}
+      />
+      <Route
+        exact
+        path='/image/:imageId'
+        component={ImageDetail}
       />
       <Route
         exact

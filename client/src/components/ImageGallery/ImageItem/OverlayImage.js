@@ -5,7 +5,7 @@ import './overlayImage.css'
 function OverlayImage({ src }) {
     
     // IN PARAMS RECIEVE FULL IMAGE DATA 
-    // FROM THAT QUERY THE USER AND GALLERY AND MAKE LINKS TO THEM 
+    // FROM THAT QUERY THE USER
     // FROM USER FETCH MORE IMAGE FROM THIS USER 
     
     return (
@@ -17,9 +17,13 @@ function OverlayImage({ src }) {
                     className='overlay-image'
                 />
                 <div className='overlay overlay-bottom'>
-                    <div className="image-info">
-                        <p>@username</p>
-                        <p>Download</p>
+                    <div className="image-info-overlay">
+                        <Link to={`/profile/5`}>
+                            <p>@username</p>
+                        </Link>
+                        <p>
+                            <i className="fa fa-download"></i>
+                        </p>
                     </div>
                 </div>
             </div>
