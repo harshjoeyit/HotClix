@@ -14,7 +14,7 @@
       text-align: center;
       margin: 20px 0;
       padding: 10px;
-      color: var(--color2);
+      color: var(--blue_4);
 }
 
 form {
@@ -22,8 +22,8 @@ form {
     padding: 20px;
     margin: 120px auto;
     border-radius: 5px;
-    box-shadow: var(--light-box-shadow);
-    background-color: var(--bg-color);
+    box-shadow: var(--dark-box-shadow);
+    background-color: var(--grey_1);
 }
 
 .extralink {
@@ -39,7 +39,7 @@ input, textarea {
     border-radius: 3px;
     border: none;
     border-radius: 3px;
-    color: var(--color1);
+    color: var(--blue_4);
 }
 
 .form-btn-container {
@@ -53,21 +53,21 @@ form button {
     padding: 8px 15px;  
     border-radius: 3px;
     margin: 3px;
-    background-color: var(--color1);
+    background-color: var(--blue_4);
     color: white;
     transition: all ease-in 0.2s;
 }
 
 form button:hover {
-    background-color: var(--color2);
+    background-color: var(--blue_3);
 }
 
 .error {
     text-align: center;
     padding: 5px;
     border-radius: 3px;
-    color: rgb(226, 28, 28);
-    background-color: rgb(240, 193, 193);
+    color: white;
+    background-color: var(--pink_1);
 }
 
 @media only screen and (max-width: 600px) {

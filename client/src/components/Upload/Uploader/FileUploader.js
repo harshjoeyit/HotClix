@@ -61,7 +61,7 @@ function FileUploader({ galleryId }) {
                     'auth-token': localStorage.getItem('auth-token'),
                 },
                 onUploadProgress: (progressEvent) => {
-                    console.log(parseInt(Math.round((progressEvent.loaded * 100) / progressEvent.total)))
+                    // console.log(parseInt(Math.round((progressEvent.loaded * 100) / progressEvent.total)))
                     // setState(pr => ({
                     //     ...pr,
                     //     progress: parseInt(

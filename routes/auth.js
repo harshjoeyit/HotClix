@@ -20,7 +20,7 @@ router.post('/register', async (req,res) => {
     // CREATE NEW USER FUNCTION
 
     const createNewUser = async ({ email, username, password }) => {
-        console.log('creating new user')
+        // console.log('creating new user')
         
         let salt, hashedPassword;
         try {

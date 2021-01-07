@@ -24,7 +24,7 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData)
+        // console.log(formData)
 
         if (formData.email === "" || formData.password === "" ||
             formData.username === "" || formData.password2 === "") {
@@ -48,7 +48,7 @@ const Register = () => {
         axios
             .post(`api/users/register`, body)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setError('')
                 // REDIRECT TO SIGNIN
                 setTimeout(() => {
@@ -58,7 +58,7 @@ const Register = () => {
             .catch(err => {
                 const data = err.response.data;
                 const error = data.message ? data.message : data.error
-                console.log(error)
+                // console.log(error)
                 setError(error)
             })
     }

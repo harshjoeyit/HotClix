@@ -12,9 +12,9 @@
     align-items: center;
     padding: 10px;
     margin-top: 10px;
-    border: 3px dashed rgb(206, 206, 206);
+    border: 3px dashed var(--blue_3);
     border-radius: 10px;
-    background-color: rgb(246, 246, 246);
+    background-color: var(--grey_1);
 }
 
 .drop-region {
@@ -43,17 +43,17 @@
     content: 'Click to select files';
     display: block;
     border-radius: 3px;
-    padding: 5px 10px;
+    padding: 5px;
     white-space: nowrap;
     -webkit-user-select: none;
     cursor: pointer;
     font-size: 15px;
     text-align: center;
-    color: rgba(87, 87, 87, 0.767);
-    border: 1px solid rgba(87, 87, 87, 0.692);
+    color: var(--blue_4);
+    border: 1px solid var(--blue_4);
 }
 .custom-file-input:hover::before {
-    border-color: black;
+    border-color: var(--blue_4);
 }
 .custom-file-input:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
@@ -71,17 +71,17 @@
     font-size: 15px;
     font-weight: bold;
     border-radius: 3px;
-    background-color: var(--color1);
+    background-color: var(--blue_4);
     color: white;
     margin-right: 10px;
 }
 
 .upload-btn button:hover {
-    background-color: var(--color2);
+    background-color: var(--blue_3);
 }
 
 .upload-btn .uploading-images {
-    background-color: rgb(103, 180, 16);
+    background-color: var(--blue_3);
     width: fit-content;
 }
 

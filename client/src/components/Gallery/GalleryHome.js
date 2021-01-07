@@ -24,7 +24,7 @@ function UserGallery() {
 
         getGalleryDetails(galleryId)
             .then(gallery => {
-                console.log(gallery)
+                // console.log(gallery)
                 setGalleryData({
                     gallery: gallery,
                     loading: false
@@ -36,7 +36,7 @@ function UserGallery() {
 
         getImages(undefined, galleryId)
             .then(images => {
-                console.log(images)
+                // console.log(images)
                 setGalleryImages({
                     images: images,
                     loading: false

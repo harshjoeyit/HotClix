@@ -2,6 +2,7 @@
 .upload-container {
     font-family: 'Raleway', sans-serif;
     margin-top: 40px;
+    color: var(--blue_4);
 }
 
 .select-gallery-title {

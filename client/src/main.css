@@ -9,6 +9,19 @@
     --color2: #ff4f6c;
     --color3: rgb(48, 147, 172);
 
+    --grey_1: #e7e7de;
+    --purple_1: #7579e7;
+    --purple_2: #9ab3f5;
+    --blue_1: #a3d8f4;
+    --blue_2: #b9fffc;
+    --blue_3: #3d7ea6;
+    --blue_4: #0f3057;
+    --pink_1: #ffa5a5;
+    --pink_2: #fcdada;
+    --green_1: #5c969e;
+    --green_2: #008891;
+
+
     --light-box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
     0 12.5px 10px rgba(0, 0, 0, 0.06);

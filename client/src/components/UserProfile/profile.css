@@ -8,13 +8,14 @@
 }
 
 .top-detail-container {
-	background: linear-gradient(360deg, rgba(255, 255, 255, 0), rgb(209, 209, 209));
+	background: linear-gradient(360deg, rgba(255, 255, 255, 0), var(--grey_1));
 	font-family: 'Raleway';
 	height: 250px;
 }
 
 .profile-details {
 	width: fit-content;
+	color: var(--blue_4);
 }
 
 .user-info .username {
@@ -25,7 +26,7 @@
 
 .user-info .user-email {
 	font-size: 20px;
-	color: grey;
+	color: var(--blue_3);
 }
 
 /* USER AVATAR */
@@ -37,8 +38,8 @@
 	border-radius: 20px;
 	padding-top: 10px;
 	font-size: 18px;
-	background-color: rgb(47, 47, 47);
-	color: var(--bg-color);
+	background-color: var(--blue_4);
+	color: var(--grey_1);
 	font-weight: bold;
 	text-align: center;
 	margin-right: 5px;
@@ -67,7 +68,7 @@
 	
 	.user-info .user-email {
 		font-size: 15px;
-		color: grey;
+		color: var(--grey_1);
 	}
 }
 
@@ -86,12 +87,13 @@
 	font-size: 18px;
 	text-align: center;
 	transition: all ease 0.25s;
+	color: var(--blue_4);
 }
 
 .select-view-btns button:hover {
-	color: grey;
+	color: var(--blue_3);
 }
 
 .view-active {
-	border-top: 2px solid grey;
+	border-top: 2px solid var(--blue_3);
 }

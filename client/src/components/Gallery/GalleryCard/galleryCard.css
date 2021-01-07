@@ -9,7 +9,8 @@
     justify-content: space-between;
     border-radius: 5px;
     margin: 10px 20px 10px 0;
-    background: linear-gradient(135deg, rgb(143, 216, 238), rgb(232, 232, 243));
+    background: linear-gradient(135deg, var(--blue_1), var(--grey_1));
+    color: var(--blue_4);
     box-shadow: var(--light-box-shadow);
     transition: all ease 0.25s;
 }
@@ -30,7 +31,7 @@
 }
 
 .gallery-active {
-    border: 3px solid rgb(185, 133, 235);
+    border: 3px solid var(--blue_3);
 }
 
 .gallery-select-card {

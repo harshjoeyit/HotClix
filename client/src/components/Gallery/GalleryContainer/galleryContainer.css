@@ -19,15 +19,24 @@
 }
 
 .scroll-indicators  span {
+    color: var(--blue_4);
     font-weight: bold;
     font-size: 15px;
 }
 
 .scroll-indicators button {
+    color: var(--blue_4);
     padding: 5px 15px;
     border-radius: 3px;
-    border: 1px solid grey;
+    border: 1px solid var(--blue_4);
+    transition: all ease 0.2s;
 }
+
+.scroll-indicators button:hover {
+    background-color: var(--blue_4);
+    color: var(--grey_1);
+}
+
 
 @media screen and (max-width: 1300px) {
     .gallery-container {
