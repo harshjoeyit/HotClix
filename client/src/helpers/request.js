@@ -177,4 +177,6 @@ export const requestDownload = async (fileUrl, fileName, fileFormat) => {
             link.remove();
         })
         .catch(err => console.error(err));
+
+    alert('The photo is downloading...')
 }

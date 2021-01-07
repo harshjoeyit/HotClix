@@ -1,50 +1,86 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { arrangeImagesInColumns } from '../../helpers'
 import ImageItem from './ImageItem/OverlayImage'
 import './gallery.css'
 
-import one from '../../Images/one.jpg'
-import two from '../../Images/two.jpg'
-import three from '../../Images/three.jpg'
-import four from '../../Images/four.jpg'
-import five from '../../Images/five.jpg'
-import six from '../../Images/six.jpg'
 
-function Gallery() {
+function Gallery({ images }) {
+
+    const initState = { 
+        columns: [], 
+        screenWidth: window.innerWidth,
+        loading: true 
+    }
+
+    // STATE
+    const [state, setState] = useState(initState)
+
+    useEffect(() => {
+        const res = arrangeImagesInColumns(images, state.screenWidth)
+        setState(pr => ({
+            ...pr,
+            columns: res,
+            loading: false
+        }))
+
+    }, [state.screenWidth])
+
+    useEffect(() => {
+
+        const updateScreenSize = () => {
+            setState(pr => ({
+                ...pr, 
+                screenWidth: window.innerWidth
+            }))
+        }
+
+        // ADD EVENT LISTENER 
+        window.addEventListener('resize', updateScreenSize);
+
+        return () => {
+            window.removeEventListener('resize', updateScreenSize)
+        }
+    }, [])
+
     return (
         <div className="image-gallery">
             <div className="gallery-row">
-                <div className="gallery-column">
-                    <ImageItem src={one} />
-                    <ImageItem src={three} />
-                    <ImageItem src={five} />
-                    <ImageItem src={four} />
-                    <ImageItem src={six} />
-                    <ImageItem src={one} />
-                </div>
-                <div className="gallery-column">
-                    <ImageItem src={five} />
-                    <ImageItem src={four} />
-                    <ImageItem src={three} />
-                    <ImageItem src={one} />
-                    <ImageItem src={six} />
-                    <ImageItem src={two} />
-                </div>
-                <div className="gallery-column">
-                    <ImageItem src={four} />
-                    <ImageItem src={three} />
-                    <ImageItem src={six} />
-                    <ImageItem src={five} />
-                    <ImageItem src={one} />
-                    <ImageItem src={one} />
-                </div>
-                <div className="gallery-column">
-                    <ImageItem src={six} />
-                    <ImageItem src={one} />
-                    <ImageItem src={four} />
-                    <ImageItem src={one} />
-                    <ImageItem src={three} />
-                    <ImageItem src={five} />
-                </div>
+                {
+                    state.loading
+                        ? 'Loading...'
+                        : (
+                            <>
+                                <div className="gallery-column">
+                                    {
+                                        state.columns[0].map(image => (
+                                            <ImageItem key={image.id} image={image} />
+                                        ))
+                                    }
+                                </div>
+                                <div className="gallery-column">
+                                    {
+                                        state.columns[1].map(image => (
+                                            <ImageItem key={image.id} image={image} />
+                                        ))
+                                    }
+                                </div>
+                                <div className="gallery-column">
+                                    {
+                                        state.columns[2].map(image => (
+                                            <ImageItem key={image.id} image={image} />
+                                        ))
+                                    }
+                                </div>
+                                <div className="gallery-column">
+                                    {
+                                        state.columns[3].map(image => (
+                                            <ImageItem key={image.id} image={image} />
+                                        ))
+                                    }
+                                </div>
+                            </>
+                        )
+                }
             </div>
         </div>
     )

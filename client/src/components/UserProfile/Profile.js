@@ -4,7 +4,7 @@ import {
     getUserDetails, isUserOwner,
     getUsersGalleries, getImages
 } from '../../helpers/request'
-import Gallery from '../ImageGallery/Gallery'
+import ImageGallery from '../ImageGallery/Gallery'
 import GalleryContainer from '../Gallery/GalleryContainer/GalleryContainer'
 import './profile.css'
 
@@ -105,13 +105,20 @@ function Profile() {
             {
                 showImages
                     ? (
-                        <Gallery />
+                        imagesData.loading
+                            ? <></>
+                            : <ImageGallery images={imagesData.images} />
+
                     )
                     : (
-                        <GalleryContainer
-                            galleries={galleryData.galleries}
-                            username={userData.user.username}
-                        />
+                        galleryData.loading
+                            ? <></>
+                            : (
+                                <GalleryContainer
+                                    galleries={galleryData.galleries}
+                                    username={userData.user.username}
+                                />
+                            )
                     )
             }
 

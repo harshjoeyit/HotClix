@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ImageGallery from './components/ImageGallery/Gallery';
+import { getImages } from './helpers/request'
 import './App.css';
 
 function App() {
   
+  const [state, setState] = useState({ images: [], loading: true })
+
+  useEffect(() => {
+    getImages()
+      .then(images => {
+        setState({
+          images,
+          loading: false
+        })
+      })
+      .catch(console.log)
+  }, [])
+
   return (
     <div className="main-content">
       <div className="bg-gradient">
@@ -13,7 +27,11 @@ function App() {
           <h1>For Your Photos</h1>
         </div>
       </div>
-      <ImageGallery />
+      {
+        state.loading
+        ? <></>
+        : <ImageGallery images={ state.images } />
+      }
     </div>
   );
 }

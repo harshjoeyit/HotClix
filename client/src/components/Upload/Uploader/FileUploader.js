@@ -91,10 +91,12 @@ function FileUploader({ galleryId }) {
     const prepareImagesForPreview = (files) => {
 
         files = Array.from(files)
+        
         setState(pr => ({
             ...pr,
             images: files
         }))
+        setPreviewData([])
         setError('')
 
         if (files.length > 0) {

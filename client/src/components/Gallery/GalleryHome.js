@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import Gallery from '../ImageGallery/Gallery'
+import ImageGallery from '../ImageGallery/Gallery'
 import { UserAvatarSmall } from '../UserProfile/Profile'
-import { 
-    getGalleryDetails, getImages, 
-    isUserOwner, deleteGallery 
+import {
+    getGalleryDetails, getImages,
+    isUserOwner, deleteGallery
 } from '../../helpers/request'
 import { titleCase } from '../../helpers'
 import './galleryHome.css'
@@ -50,17 +50,17 @@ function UserGallery() {
     const handleDelete = (e) => {
         e.preventDefault()
         const conf = window.confirm(`Do you want to delete the gallery?\nAll the images of this gallery will be removed`)
-        
-        if(conf) {
+
+        if (conf) {
             deleteGallery(galleryData.gallery.id)
-            .then(res => {
-                if(res.data === "") {
-                    const token = localStorage.getItem('auth-token')
-                    const user = JSON.parse(atob(token.split('.')[1]))
-                    history.push(`/profile/${user.id}`)
-                }
-            })
-            .catch(console.log)
+                .then(res => {
+                    if (res.data === "") {
+                        const token = localStorage.getItem('auth-token')
+                        const user = JSON.parse(atob(token.split('.')[1]))
+                        history.push(`/profile/${user.id}`)
+                    }
+                })
+                .catch(console.log)
         }
     }
 
@@ -102,7 +102,7 @@ function UserGallery() {
                                 galleryData.loading
                                     ? '... photos'
                                     : `${galleryData.gallery.total_photos} 
-                                        photo${galleryData.gallery.total_photos > 1? 's': ''}`
+                                        photo${galleryData.gallery.total_photos > 1 ? 's' : ''}`
                             }
                         </p>
                         <button>Download</button>
@@ -116,7 +116,11 @@ function UserGallery() {
                     </div>
                 </div>
             </div>
-            <Gallery />
+            {
+                galleryImages.loading
+                    ? <></>
+                    : <ImageGallery images={galleryImages.images} />
+            }
         </div>
     )
 }
