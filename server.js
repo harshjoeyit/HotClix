@@ -1,7 +1,7 @@
 const   express = require('express'),
         mysql = require('mysql'),
         path = require('path'),
-        keys = require('./config/keys'),
+        dotenv = require('dotenv'),
         util = require('util'),
         cors = require('cors'),
         fileUpload = require('express-fileupload'),

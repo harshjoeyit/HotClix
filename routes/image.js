@@ -1,5 +1,5 @@
 const   router = require('express').Router(),
-        keys = require('../config/keys'),
+        dotenv = require('dotenv'),
         verify = require('./verifyToken'),
         AWS = require('aws-sdk'),
         uuid = require('uuid/v4'),
@@ -15,12 +15,13 @@ const   sharp = require('sharp'),
         isJpg = require('is-jpg');
 
 
+dotenv.config()
 
 // AWS CONFIG 1
 
 const s3 = new AWS.S3({
-    accessKeyId: keys.AWS_ID,
-    secretAccessKey: keys.AWS_SECRET
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_SECRET
 })
 
 
@@ -61,12 +62,12 @@ const uploadSingleFile = async (file) => {
     // PARAMS
 
     const fileParams = {
-        Bucket: keys.AWS_BUCKET_NAME,
+        Bucket: process.env.AWS_BUCKET_NAME,
         Key: `${fileName}_${uniqueId}.jpg`,
         Body: fileBuffer
     }
     const thumbnailParams = {
-        Bucket: keys.AWS_BUCKET_NAME,
+        Bucket: process.env.AWS_BUCKET_NAME,
         Key: `${fileName}_${uniqueId}_thumbnail.jpg`,
         Body: thumbnailBuffer
     }

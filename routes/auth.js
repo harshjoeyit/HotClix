@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const keys = require('../config/keys')
+const dotenv = require('dotenv')
 const verify = require('./verifyToken')
 const { registerValidation, loginValidation } = require('../validations/userValidations');
 
+dotenv.config()
 
 // REGISTER USER 
 
@@ -86,7 +87,7 @@ router.post('/login', async (req, res) => {
     // CREATE AND ASSIGN NEW TOKEN
    
     const token = jwt.sign ({ id: user.id }, 
-                            keys.TOKEN_SECRET, 
+                            process.env.TOKEN_SECRET, 
                             { expiresIn: 86400 });
     
     res.header('auth-token', token).send({ 

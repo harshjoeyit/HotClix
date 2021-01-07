@@ -101,7 +101,7 @@ const Register = () => {
                 </div>
                 <div className="input-container">
                     <input
-                        type="password2"
+                        type="password"
                         required
                         name="password2"
                         placeholder='Repeat Password'

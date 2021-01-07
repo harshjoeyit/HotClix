@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
-const keys = require('../config/keys')
+const dotenv = require('dotenv')
+dotenv.config()
 
 // MIDDLEWARE FUNCTION FOR 
 // PROTECTED ROUTES 
@@ -11,7 +12,7 @@ const verify = (req, res, next) => {
     }
     
     try { 
-        jwt.verify(token, keys.TOKEN_SECRET, (err, decoded) => {
+        jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
             if(err) {
                 return res.status(401).send({'message': 'Unauthorized'})
             }
