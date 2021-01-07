@@ -1,12 +1,12 @@
 
-import axios from 'axios'   
+import axios from 'axios'
 import getHeaders from '.'
 
 
 // GET USER DETAILS
 
 export const getUserDetails = async (userId) => {
-    if(userId === undefined) {
+    if (userId === undefined) {
 
         // GET AUTHENTICATED USER 
 
@@ -60,13 +60,13 @@ export const getImageDetails = async (imageId) => {
 
 // GET ALL IMAGES, BY USER, FROM A GALLERY
 
-export const getImages = async(userId, galleryId) => {
+export const getImages = async (userId, galleryId) => {
     try {
         let requestUri = `/api/images`
-        if(userId) {
+        if (userId) {
             requestUri += `?userId=${userId}`
         }
-        else if(galleryId) {
+        else if (galleryId) {
             requestUri += `?galleryId=${galleryId}`
         }
         const res = await axios.get(requestUri)
@@ -96,7 +96,7 @@ export const getGalleryDetails = async (galleryId) => {
 // GET USER'S GALLERIES 
 
 export const getUsersGalleries = async (userId) => {
-    if(userId === undefined) {
+    if (userId === undefined) {
 
         // GET AUTHENTICATED USER 
 
@@ -104,7 +104,7 @@ export const getUsersGalleries = async (userId) => {
         const user = JSON.parse(atob(token.split('.')[1]))
         userId = user.id
     }
-    
+
     try {
         const res = await axios.get(`/api/gallery?userId=${userId}`)
         return res.data.galleries
@@ -138,8 +138,43 @@ export const createGallery = async (body) => {
         const res = await axios.post(`/api/gallery`, body, { headers: headers })
         return res
     }
-    catch(err) {
+    catch (err) {
         return err
     }
 }
 
+
+// DELETE GALLERY 
+
+export const deleteGallery = async (galleryId) => {
+    try {
+        const headers = getHeaders()
+        const res = await axios.delete(`/api/gallery/${galleryId}`, { headers: headers })
+        return res;
+    }
+    catch (err) {
+        console.log('error in deleting')
+        return err
+    }
+}
+
+
+// DOWNLOAD 
+
+export const requestDownload = async (fileUrl, fileName, fileFormat) => {
+    
+    // HEAD method MUST BE ALLOWED ON THE RESOURCE TO BE ACCESSED
+    fetch(fileUrl)
+        .then(res => {
+            return res.blob();
+        }).then(blob => {
+            const href = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = href;
+            link.setAttribute('download', (fileName) ? `${fileName}.${fileFormat}`: `file.${fileFormat}`);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        })
+        .catch(err => console.error(err));
+}

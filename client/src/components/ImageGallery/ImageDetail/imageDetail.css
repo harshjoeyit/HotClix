@@ -20,6 +20,8 @@
 }
 
 .image-info {
+    display: flex;
+    justify-content: space-between;
     padding: 10px 20px;
     font-size: 18px;
     font-weight: bold;
@@ -32,6 +34,7 @@
 }
 
 .image-download {
+    cursor: pointer;
     padding-top: 8px;
 }
 
@@ -53,7 +56,7 @@
 
 @media (max-width: 600px) {
     .more-user-images h2 {
-        font-size: 18px;
+        font-size: 15px;
     }
     .image-info {
         font-size: 15px;

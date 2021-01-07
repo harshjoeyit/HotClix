@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import Gallery from '../ImageGallery/Gallery'
 import { UserAvatarSmall } from '../UserProfile/Profile'
-import { getGalleryDetails, getImages, isUserOwner } from '../../helpers/request'
+import { 
+    getGalleryDetails, getImages, 
+    isUserOwner, deleteGallery 
+} from '../../helpers/request'
 import { titleCase } from '../../helpers'
 import './galleryHome.css'
 
 function UserGallery() {
 
+    const history = useHistory()
     const { galleryId } = useParams()
 
     // STATES
@@ -42,9 +46,26 @@ function UserGallery() {
 
     }, [galleryId])
 
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+        const conf = window.confirm(`Do you want to delete the gallery?\nAll the images of this gallery will be removed`)
+        
+        if(conf) {
+            deleteGallery(galleryData.gallery.id)
+            .then(res => {
+                if(res.data === "") {
+                    const token = localStorage.getItem('auth-token')
+                    const user = JSON.parse(atob(token.split('.')[1]))
+                    history.push(`/profile/${user.id}`)
+                }
+            })
+            .catch(console.log)
+        }
+    }
+
     // TODO 
     // enable download 
-    // Show delete option only when user's gallery
 
     return (
         <div className="main-container">
@@ -80,7 +101,8 @@ function UserGallery() {
                             {
                                 galleryData.loading
                                     ? '... photos'
-                                    : `${galleryData.gallery.total_photos} photos`
+                                    : `${galleryData.gallery.total_photos} 
+                                        photo${galleryData.gallery.total_photos > 1? 's': ''}`
                             }
                         </p>
                         <button>Download</button>
@@ -88,7 +110,7 @@ function UserGallery() {
                             galleryData.loading
                                 ? <></>
                                 : isUserOwner(galleryData.gallery.created_by)
-                                    ? <button>Delete</button>
+                                    ? <button onClick={handleDelete}>Delete</button>
                                     : <></>
                         }
                     </div>

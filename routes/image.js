@@ -242,7 +242,12 @@ router.delete('/:imageId', verify, async(req, res) => {
     // DELETE FROM DB
 
     sql = `DELETE FROM images WHERE id = ${imageId}`
-    const dbRes = await dbquery(sql)
+    let dbRes = await dbquery(sql)
+
+    // DECREASE PHOTO COUNT in GALLERY TABLE 
+
+    sql = `UPDATE gallery SET total_photos = total_photos - 1 WHERE id = '${imageFound[0].gallery}'`
+    dbRes = await dbquery(sql)
 
     res.status(204).send()
 })
