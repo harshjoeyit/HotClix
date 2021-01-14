@@ -4,7 +4,7 @@ A photo management application
 ### Video [Link](https://drive.google.com/file/d/1IxxzfNAHcKNOXmggPge81jdmAg-g6r-A/view?usp=sharing)
 
 ### Tech Stack 
-- Backend - NodeJs(ExpressJs)/
+- Backend - NodeJs
 - Frontend - ReactJs
 - Database - MySQL
 - Blob Storage - AWS S3
