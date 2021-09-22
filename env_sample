@@ -1,0 +1,14 @@
+PORT = 
+TOKEN_SECRET = 
+AWS_ID = 
+AWS_SECRET = 
+AWS_BUCKET_NAME = 
+
+
+==> Example
+
+PORT = 5000
+TOKEN_SECRET = my_strong_secret_is_this
+AWS_ID = KKINZHMUUYNBWI67LAU6
+AWS_SECRET = jZCzanF6Ephs07c8fYwDlTLP0yFnXgD72jJEqqmh
+AWS_BUCKET_NAME = my_first_bucket

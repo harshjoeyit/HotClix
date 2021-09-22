@@ -19,3 +19,12 @@ A photo management application
 - View photos and galleries of other user
 - Download photos
 - Mobile responsive
+
+### How to run locally?
+- Clone the repository
+- Create a S3 bucket on AWS and with right ACL policies
+- Start MySQL server and create a database by `snaphot` and import the `snaphot.sql` to create the tables
+- Create a file named `.env` and copy the fields from `env_sample` to `.env` and populate the fields
+- Run `npm i` in `HotClix` and `HotClix/client` directory. You can safely ignore the warning if it comes up.
+- 
+ 
