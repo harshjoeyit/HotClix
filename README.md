@@ -26,5 +26,6 @@ A photo management application
 - Start MySQL server and create a database by `snaphot` and import the `snaphot.sql` to create the tables
 - Create a file named `.env` and copy the fields from `env_sample` to `.env` and populate the fields
 - Run `npm i` in `HotClix` and `HotClix/client` directory. You can safely ignore the warning if it comes up.
-- 
+- After packages are installed, run npm start in `HotClix` and `HotClix/client` directory to start the servers.
+- Now you are good to go
  
